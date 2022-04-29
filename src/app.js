@@ -1,8 +1,9 @@
-import express from 'express';
+import express from "express";
 
-import credencialRoutes from './routes/credencial.routes.js';
-import representanteRoutes from './routes/representante.routes.js'
-import empresaRoutes from './routes/empresa.routes.js'
+import credencialRoutes from "./routes/credencial.routes.js";
+import representanteRoutes from "./routes/representante.routes.js";
+import empresaRoutes from "./routes/empresa.routes.js";
+import rolRoutes from "./routes/rol.routes.js";
 
 const app = express();
 
@@ -10,7 +11,8 @@ const app = express();
 
 app.use(express.json());
 
-app.use(credencialRoutes)
-app.use(representanteRoutes)
-app.use(empresaRoutes)
+app.use(credencialRoutes);
+app.use(representanteRoutes);
+app.use(empresaRoutes);
+app.use(rolRoutes);
 export default app;
