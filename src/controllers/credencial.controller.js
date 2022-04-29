@@ -27,7 +27,9 @@ export const getCredencial = async (req, res) => {
 };
 
 export const createCredencial = async (req, res) => {
-  const { correo, password} = req.body;
+  
+  const { correo,password} = req.body;
+  
 
   try {
     const newCredencial = await Credencial.create({
