@@ -19,7 +19,7 @@ export const Empresa = sequelize.define("empresas", {
     type: DataTypes.STRING
   },
   telefono: {
-    type: DataTypes.INTEGER
+    type: DataTypes.STRING
   },
   codigo_CIUU: {
     type: DataTypes.INTEGER,
