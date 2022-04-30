@@ -28,13 +28,14 @@ export const getCredencial = async (req, res) => {
 
 export const createCredencial = async (req, res) => {
   
-  const { correo,password} = req.body;
+  const { correo,password,rolId} = req.body;
   
 
   try {
     const newCredencial = await Credencial.create({
       correo,
       password,
+      rolId
       
     });
 
@@ -47,11 +48,16 @@ export const createCredencial = async (req, res) => {
 export const updateCredencial = async (req, res) => {
   try {
     const { id } = req.params;
-    const { correo, password } = req.body;
+    const credencial=await Credencial.findOne({
+      where:{id},
+    });
+    credencial.set(req.body);
+    //const { correo, password} = req.body;
 
-    const credencial = await Credencial.findByPk(id);
-    credencial.correo = correo;
-    credencial.password = password;
+    // const credencial = await Credencial.findByPk(id);
+    // credencial.correo = correo;
+    // credencial.password = password;
+    
     
     await credencial.save();
 
@@ -75,9 +81,13 @@ export const deleteCredencial = async (req, res) => {
 };
 
 export const getCredencialRepresentante=async(req,res)=>{
+ try {
   const {id}=req.params
   const representante=await Representante.findAll({
     where:{credencialId:id}
   })
   res.json(representante)
+ } catch (error) {
+  return res.status(500).json({ message: error.message });
+ }
 }

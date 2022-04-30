@@ -1,13 +1,14 @@
 import Router from "express";
-// import { createRepresentante, deleteRepresentante, getRepre, getRepresentantes, updateRepresentante } from "../controllers/representante.controller.js";
+import { createRol, deleteRol, getRol, getRoles, updateRol } from "../controllers/rol.controller.js";
+
 const router = Router();
 
 
-// router.get('/representantes',getRepresentantes);
-// router.post('/representantes',createRepresentante)
-// router.put('/representantes/:id',updateRepresentante)
-// router.delete('/representantes/:id',deleteRepresentante)
-// router.get('/representantes/:id',getRepre)
+router.get('/roles',getRoles);
+router.post('/roles',createRol)
+router.put('/roles/:id',updateRol)
+router.delete('/roles/:id',deleteRol)
+router.get('/roles/:id',getRol)
 
 
 export default router;

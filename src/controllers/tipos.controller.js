@@ -1,9 +1,9 @@
-import { Rol } from "../models/Rol.js";
+import { Tipo } from "../models/Tipo_responsable.js";
 
 export const getRoles = async (req, res) => {
   try {
-    const roles = await Rol.findAll();
-    res.json(roles);
+    const tipos = await Tipo.findAll();
+    res.json(tipos);
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
@@ -12,39 +12,39 @@ export const getRoles = async (req, res) => {
 export const getRol= async (req, res) => {
   try {
     const { id } = req.params;
-    const rol = await Rol.findOne({
+    const tipo = await Tipo.findOne({
       where: {
         id,
       },
       //attributes:['nombres']
     });
 
-    if (!rol) return res.status(404).json({message:"rol no existe"});
-    res.json(rol);
+    if (!rol) return res.status(404).json({message:"tipo no existe"});
+    res.json(tipo);
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
 };
 
-export const createRol = async (req, res) => {
-  const { rol,credencialId} = req.body;
+export const createTipo = async (req, res) => {
+  const { tipo} = req.body;
 
   try {
-    const newRol = await Rol.create({
+    const newTipo = await Tipo.create({
       rol,
       credencialId
     });
 
-    res.json(newRol);
+    res.json(newTipo);
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
 };
 
-export const updateRol = async (req, res) => {
+export const updateTipo = async (req, res) => {
   try {
     const { id } = req.params;
-    const rol=await Rol.findOne({
+    const tipo=await Tipo.findOne({
       where:{id},
     });
     rol.set(req.body);
@@ -55,17 +55,17 @@ export const updateRol = async (req, res) => {
     // representante.apellidos = apellidos;
     // representante.cedula = cedula;
     // representante.credencialId=credencialId;
-    await rol.save();
+    await tipo.save();
 
-    res.json(rol);
+    res.json(tipo);
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
 };
-export const deleteRol = async (req, res) => {
+export const deleteTipo = async (req, res) => {
   try {
     const { id } = req.params;
-    await Rol.destroy({
+    await Tipo.destroy({
       where: {
         id,
       },
