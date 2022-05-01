@@ -56,17 +56,21 @@ export const createCredencial = async (req, res) => {
 export const updateCredencial = async (req, res) => {
   try {
     const { id } = req.params;
-    const credencial=await Credencial.findOne({
-      where:{id},
-    });
-    credencial.set(req.body);
+    const { correo, password,rolId} = req.body;
+    // const credencial=await Credencial.findOne({
+    //   where:{id},
+    //});
+    //credencial.set(req.body);
     //const { correo, password} = req.body;
 
-    // const credencial = await Credencial.findByPk(id);
-    // credencial.correo = correo;
-    // credencial.password = password;
+    const credencial = await Credencial.findByPk(id);
+    credencial.correo = correo;
+    credencial.password = password;
+    credencial.rolId = rolId;
     
     
+    const salt = await bcrypt.genSalt(8);
+    credencial.password = await bcrypt.hash(password, salt);
     await credencial.save();
 
     res.json(credencial);
