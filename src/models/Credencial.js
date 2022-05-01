@@ -21,7 +21,7 @@ export const Credencial = sequelize.define("credenciales", {
   },
 },
 {
-  timestamps: false,
+  timestamps: true,
 });
 
 Credencial.hasOne(Representante,{

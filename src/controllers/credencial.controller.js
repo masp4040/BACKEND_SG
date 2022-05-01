@@ -1,5 +1,6 @@
 import { Credencial } from "../models/Credencial.js";
 import { Representante } from "../models/Representante.js";
+import bcrypt from 'bcrypt'
 
 export const getCredenciales = async (req, res) => {
   try {
@@ -32,16 +33,23 @@ export const createCredencial = async (req, res) => {
   
 
   try {
+    
+    
+
     const newCredencial = await Credencial.create({
       correo,
       password,
       rolId
       
     });
+    
+    const salt = await bcrypt.genSalt(8);
+    newCredencial.password = await bcrypt.hash(password, salt);
+    await newCredencial.save();
 
     res.json(newCredencial);
   } catch (error) {
-    return res.status(500).json({ message: error.message });
+    return res.status(500).json({ message: "el usuario ya existe" });
   }
 };
 
