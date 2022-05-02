@@ -1,5 +1,6 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../database/database.js";
+import { Clasificacion } from "./Clasificacion.js";
 import { Representante } from "./Representante.js";
 import { Responsable } from "./Responsable.js";
 
@@ -48,6 +49,16 @@ Empresa.hasOne(Responsable, {
 });
 
 Responsable.belongsTo(Empresa, {
+  foreignKey: "empresaId",
+  targetId: "id",
+});
+
+Empresa.hasOne(Clasificacion, {
+  foreignKey: "empresaId",
+  sourceKey: "id",
+});
+
+Clasificacion.belongsTo(Empresa, {
   foreignKey: "empresaId",
   targetId: "id",
 });

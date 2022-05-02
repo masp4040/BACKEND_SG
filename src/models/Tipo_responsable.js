@@ -1,9 +1,10 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../database/database.js";
-//import { Credencial } from "./Credencial.js";
+import { Clasificacion } from "./Clasificacion.js";
+import { Responsable } from "./Responsable.js";
 
 
-export const Tipos = sequelize.define("tipos_responsable", {
+export const Tipo_responsable = sequelize.define("tipos_responsable", {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -21,14 +22,24 @@ export const Tipos = sequelize.define("tipos_responsable", {
   timestamps: false,
 });
 
-// Rol.hasOne(Credencial,{
-//   foreignKey:'rolId',
-//   sourceKey:'id'
-// })                                                                  
+Tipo_responsable.hasOne(Responsable, {
+  foreignKey: "tipo_responsableId",
+  sourceKey: "id",
+});
 
-// Credencial.belongsTo(Rol,{
-//   foreignKey:'rolId',
-//   targetId:'id'
-// })
+Responsable.belongsTo(Tipo_responsable, {
+  foreignKey: "tipo_responsableId",
+  targetId: "id",
+});
+
+Tipo_responsable.hasOne(Clasificacion, {
+  foreignKey: "tipo_responsableId",
+  sourceKey: "id",
+});
+
+Clasificacion.belongsTo(Tipo_responsable, {
+  foreignKey: "tipo_responsableId",
+  targetId: "id",
+});
 
 
