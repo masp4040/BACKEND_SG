@@ -5,7 +5,9 @@ import credencialRoutes from "./routes/credencial.routes.js";
 import representanteRoutes from "./routes/representante.routes.js";
 import empresaRoutes from "./routes/empresa.routes.js";
 import rolRoutes from "./routes/rol.routes.js";
-import tipoRoutes from "./routes/tipo.routes.js";
+import tipoRoutes from "./routes/tipo.responsable.routes.js";
+import cicloRoutes from './routes/ciclo.routes.js';
+import responsableRoutes from './routes/representante.routes.js'
 
 const app = express();
 
@@ -20,4 +22,6 @@ app.use(representanteRoutes);
 app.use(empresaRoutes);
 app.use(rolRoutes);
 app.use(tipoRoutes);
+app.use(cicloRoutes);
+app.use(responsableRoutes)
 export default app;

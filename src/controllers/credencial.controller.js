@@ -29,7 +29,7 @@ export const getCredencial = async (req, res) => {
 
 export const createCredencial = async (req, res) => {
   
-  const { correo,password,rolId} = req.body;
+  const { correo,password,activo,rolId} = req.body;
   
 
   try {
@@ -39,6 +39,7 @@ export const createCredencial = async (req, res) => {
     const newCredencial = await Credencial.create({
       correo,
       password,
+      activo,
       rolId
       
     });
@@ -56,7 +57,7 @@ export const createCredencial = async (req, res) => {
 export const updateCredencial = async (req, res) => {
   try {
     const { id } = req.params;
-    const { correo, password,rolId} = req.body;
+    const { correo, password,activo,rolId} = req.body;
     // const credencial=await Credencial.findOne({
     //   where:{id},
     //});
@@ -66,6 +67,7 @@ export const updateCredencial = async (req, res) => {
     const credencial = await Credencial.findByPk(id);
     credencial.correo = correo;
     credencial.password = password;
+    credencial.activo = activo;
     credencial.rolId = rolId;
     
     

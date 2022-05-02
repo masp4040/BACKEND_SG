@@ -5,6 +5,8 @@ import './models/Credencial.js'
 import './models/Empresa.js'
 import './models/Representante.js'
 import './models/Tipo_responsable.js'
+import './models/Ciclo.js'
+import './models/Responsable.js'
 
 
 async function main() {

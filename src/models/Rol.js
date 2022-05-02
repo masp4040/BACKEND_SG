@@ -10,7 +10,7 @@ export const Rol = sequelize.define("roles", {
     autoIncrement: true,
   },
   rol: {
-    type: DataTypes.INTEGER,
+    type: DataTypes.STRING,
     
     
     
