@@ -4,7 +4,7 @@ import { Clasificacion } from "./Clasificacion.js";
 import { Responsable } from "./Responsable.js";
 
 
-export const Tipo_responsable = sequelize.define("tipos_responsable", {
+export const TipoResponsable = sequelize.define("tipos_responsable", {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
@@ -22,22 +22,22 @@ export const Tipo_responsable = sequelize.define("tipos_responsable", {
   timestamps: false,
 });
 
-Tipo_responsable.hasOne(Responsable, {
+TipoResponsable.hasOne(Responsable, {
   foreignKey: "tipo_responsableId",
   sourceKey: "id",
 });
 
-Responsable.belongsTo(Tipo_responsable, {
+Responsable.belongsTo(TipoResponsable, {
   foreignKey: "tipo_responsableId",
   targetId: "id",
 });
 
-Tipo_responsable.hasOne(Clasificacion, {
+TipoResponsable.hasOne(Clasificacion, {
   foreignKey: "tipo_responsableId",
   sourceKey: "id",
 });
 
-Clasificacion.belongsTo(Tipo_responsable, {
+Clasificacion.belongsTo(TipoResponsable, {
   foreignKey: "tipo_responsableId",
   targetId: "id",
 });

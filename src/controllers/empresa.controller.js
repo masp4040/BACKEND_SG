@@ -33,6 +33,7 @@ export const createEmpresa = async (req, res) => {
     const newEmpresa = await Empresa.create({
       nit,
       razon_social,
+      telefono,
       direccion,
       codigo_CIUU
       

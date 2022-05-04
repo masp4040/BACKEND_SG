@@ -1,6 +1,6 @@
 import {Clasificacion} from "../models/Clasificacion.js";
 
-export const getClasificacions = async (req, res) => {
+export const getClasificaciones = async (req, res) => {
   try {
     const clasificaciones = await Clasificacion.findAll();
     res.json(clasificaciones);
@@ -12,26 +12,40 @@ export const getClasificacions = async (req, res) => {
 export const getClasificacion= async (req, res) => {
   try {
     const { id } = req.params;
-    const ciclo = await Clasificacion.findOne({
+    const clasificacion = await Clasificacion.findOne({
       where: {
         id,
       },
       //attributes:['nombres']
     });
 
-    if (!ciclo) return res.status(404).json({message:"ciclo no existe"});
-    res.json(ciclo);
+    if (!clasificacion) return res.status(404).json({message:"clasificacion no existe"});
+    res.json(clasificacion);
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
 };
 
 export const createClasificacion = async (req, res) => {
-  const { ciclo} = req.body;
+  const { num_empleados,
+    nivel_riesgo,
+    fecha,
+    tipo_evaluacion_id,
+    tipo_responsable_id,
+    empresa_id,
+    num_estandares
+  } = req.body;
 
   try {
-    const newClasificacion = await Rol.create({
-      ciclo
+    const newClasificacion = await Clasificacion.create({
+        num_empleados,
+        nivel_riesgo,
+        fecha,
+        tipo_evaluacion_id,
+        tipo_responsable_id,
+        empresa_id,
+        num_estandares
+      
       
     });
 
@@ -44,7 +58,7 @@ export const createClasificacion = async (req, res) => {
 export const updateClasificacion = async (req, res) => {
   try {
     const { id } = req.params;
-    const ciclo=await Clasificacion.findOne({
+    const clasificacion=await Clasificacion.findOne({
       where:{id},
     });
     rol.set(req.body);
@@ -55,9 +69,9 @@ export const updateClasificacion = async (req, res) => {
     // representante.apellidos = apellidos;
     // representante.cedula = cedula;
     // representante.credencialId=credencialId;
-    await ciclo.save();
+    await clasificacion.save();
 
-    res.json(ciclo);
+    res.json(clasificacion);
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }

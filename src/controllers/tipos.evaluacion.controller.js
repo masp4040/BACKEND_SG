@@ -1,53 +1,53 @@
-import { TipoResponsable } from "../models/TipoResponsable.js";
+import { TipoEvaluacion } from "../models/TipoEvaluacion.js";
 
-export const getTipoResponsables = async (req, res) => {
+export const getTipoEvaluaciones = async (req, res) => {
   try {
-    const tiposResponsables = await Tipo.findAll();
-    res.json(tiposResponsables);
+    const tiposEvaluaciones = await Tipo.findAll();
+    res.json(tiposEvaluaciones);
   } catch (error) {
-    return res.status(500).json({ message: 'No existen tipos de responsables' });
+    return res.status(500).json({ message: 'No existen tipos de evaluaciones' });
   }
 };
 
-export const getTipoResponsable= async (req, res) => {
+export const getTipoEvaluacion= async (req, res) => {
   try {
     const { id } = req.params;
-    const tipoResponsable = await TipoResponsable.findOne({
+    const TipoEvaluacion = await TipoEvaluacion.findOne({
       where: {
         id,
       },
       //attributes:['nombres']
     });
 
-    if (!tipoResponsable) return res.status(404).json({message:"tipo de responsable no existe"});
-    res.json(tipoResponsable);
+    if (!TipoEvaluacion) return res.status(404).json({message:"tipo evaluacion no existe"});
+    res.json(TipoEvaluacion);
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
 };
 
-export const createTipoResponsable = async (req, res) => {
+export const createTipoEvaluacion = async (req, res) => {
   const { tipo} = req.body;
 
   try {
-    const newTipoResponsable = await TipoResponsable.create({
+    const newTipoEvaluacion = await TipoEvaluacion.create({
       tipo
       
     });
 
-    res.json(newTipoResponsable);
+    res.json(newTipoEvaluacion);
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
 };
 
-export const updateTipoResponsable = async (req, res) => {
+export const updateTipoEvaluacion = async (req, res) => {
   try {
     const { id } = req.params;
-    const tiposResponsable=await TipoResponsable.findOne({
+    const tiposEvaluacion=await TipoEvaluacion.findOne({
       where:{id},
     });
-    TipoResponsable.set(req.body);
+    TipoEvaluacion.set(req.body);
     // const { nombres, apellidos,cedula ,credencialId} = req.body;
 
     // const representante = await Representante.findByPk(id);
@@ -55,17 +55,17 @@ export const updateTipoResponsable = async (req, res) => {
     // representante.apellidos = apellidos;
     // representante.cedula = cedula;
     // representante.credencialId=credencialId;
-    await TipoResponsable.save();
+    await TipoEvaluacion.save();
 
-    res.json(tiposResponsable);
+    res.json(tiposEvaluacion);
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
 };
-export const deleteTipoResponsable = async (req, res) => {
+export const deleteTipoEvaluacion = async (req, res) => {
   try {
     const { id } = req.params;
-    await TipoResponsable.destroy({
+    await TipoEvaluacion.destroy({
       where: {
         id,
       },

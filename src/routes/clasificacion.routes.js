@@ -1,14 +1,15 @@
 import Router from "express";
+import { createClasificacion, deleteClasificacion, getClasificacion, getClasificaciones, updateClasificacion } from "../controllers/clasificacion.controller";
 
 
 const router = Router();
 
 
-router.get('/clasificaciones');
-router.post('/clasificaciones');
-router.put('/clasificaciones/:id')
-router.delete('/clasificaciones/:id');
-router.get('/clasificaciones/:id');
+router.get('/clasificaciones',getClasificaciones);
+router.post('/clasificaciones',createClasificacion);
+router.put('/clasificaciones/:id',updateClasificacion)
+router.delete('/clasificaciones/:id',deleteClasificacion);
+router.get('/clasificaciones/:id',getClasificacion);
 
 
 export default router;

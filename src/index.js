@@ -4,9 +4,11 @@ import './models/Rol.js'
 import './models/Credencial.js'
 import './models/Empresa.js'
 import './models/Representante.js'
-import './models/Tipo_responsable.js'
+import './models/TipoResponsable.js'
 import './models/Ciclo.js'
 import './models/Responsable.js'
+import './models/TipoEvaluacion.js'
+import './models/Clasificacion.js'
 
 
 async function main() {

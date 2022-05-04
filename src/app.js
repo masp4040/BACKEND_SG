@@ -8,6 +8,8 @@ import rolRoutes from "./routes/rol.routes.js";
 import tipoRoutes from "./routes/tipo.responsable.routes.js";
 import cicloRoutes from './routes/ciclo.routes.js';
 import responsableRoutes from './routes/representante.routes.js'
+import tipoRes from './routes/tipo.responsable.routes.js'
+import tipoEva from './routes/tipo.evaluacion.routes.js'
 
 const app = express();
 
@@ -24,4 +26,6 @@ app.use(rolRoutes);
 app.use(tipoRoutes);
 app.use(cicloRoutes);
 app.use(responsableRoutes)
+app.use(tipoRes)
+app.use(tipoEva)
 export default app;
