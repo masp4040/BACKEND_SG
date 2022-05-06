@@ -30,7 +30,7 @@ export const createCiclo = async (req, res) => {
   const { ciclo} = req.body;
 
   try {
-    const newCiclo = await Rol.create({
+    const newCiclo = await Ciclo.create({
       ciclo
       
     });

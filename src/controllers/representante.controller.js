@@ -16,7 +16,7 @@ export const getRepre= async (req, res) => {
       where: {
         id,
       },
-      //attributes:['nombres']
+      attributes:['nombres']
     });
 
     if (!representante) return res.status(404).json({message:"representante no existe"});

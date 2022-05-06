@@ -18,6 +18,7 @@ export const getCredencial = async (req, res) => {
       where: {
         id,
       },
+      //atributtes:['nombres']
     });
 
     if (!credencial) return res.status(404).json({message:"credencial no existe"});

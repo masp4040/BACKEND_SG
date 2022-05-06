@@ -27,7 +27,7 @@ export const getEmpresa= async (req, res) => {
 };
 
 export const createEmpresa = async (req, res) => {
-  const { nit, razon_social,direccion,telefono,codigo_CIUU} = req.body;
+  const {credencialId, nit, razon_social,direccion,telefono,codigo_CIUU} = req.body;
 
   try {
     const newEmpresa = await Empresa.create({
@@ -35,7 +35,8 @@ export const createEmpresa = async (req, res) => {
       razon_social,
       telefono,
       direccion,
-      codigo_CIUU
+      codigo_CIUU,
+      credencialId
       
     });
 
