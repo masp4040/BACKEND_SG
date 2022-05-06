@@ -1,6 +1,6 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../database/database.js";
-
+import { Clasificacion } from "./Clasificacion.js";
 
 
 export const TipoEvaluacion = sequelize.define("tipo_evaluacion", {
@@ -19,14 +19,14 @@ export const TipoEvaluacion = sequelize.define("tipo_evaluacion", {
   timestamps: false,
 });
 
-// Rol.hasOne(Credencial,{
-//   foreignKey:'rolId',
-//   sourceKey:'id'
-// })                                                                  
+TipoEvaluacion.hasOne(Clasificacion,{
+  foreignKey:'tipo_evaluacion_Id',
+  sourceKey:'id'
+})                                                                  
 
-// Credencial.belongsTo(Rol,{
-//   foreignKey:'rolId',
-//   targetId:'id'
-// })
+Clasificacion.belongsTo(TipoEvaluacion,{
+  foreignKey:'tipo_evaluacion_Id',
+  targetId:'id'
+})
 
 
