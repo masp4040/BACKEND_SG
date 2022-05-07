@@ -2,7 +2,7 @@ import { TipoEvaluacion } from "../models/TipoEvaluacion.js";
 
 export const getTipoEvaluaciones = async (req, res) => {
   try {
-    const tiposEvaluaciones = await Tipo.findAll();
+    const tiposEvaluaciones = await TipoEvaluacion.findAll();
     res.json(tiposEvaluaciones);
   } catch (error) {
     return res.status(500).json({ message: 'No existen tipos de evaluaciones' });

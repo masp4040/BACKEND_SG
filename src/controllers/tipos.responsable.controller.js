@@ -2,7 +2,7 @@ import { TipoResponsable } from "../models/TipoResponsable.js";
 
 export const getTipoResponsables = async (req, res) => {
   try {
-    const tiposResponsables = await Tipo.findAll();
+    const tiposResponsables = await TipoResponsable.findAll();
     res.json(tiposResponsables);
   } catch (error) {
     return res.status(500).json({ message: 'No existen tipos de responsables' });

@@ -5,11 +5,11 @@ import { createItemEstandar, deleteItemEstandar, getItemEstandar, getItems, upda
 const router = Router();
 
 
-router.get('/estandares',getItems);
-router.post('/estandares',createItemEstandar)
-router.put('/estandares/:id',updateItemEstandar)
-router.delete('/estandares/:id',deleteItemEstandar)
-router.get('/estandares/:id',getItemEstandar)
+router.get('/Items',getItems);
+router.post('/Items',createItemEstandar)
+router.put('/Items/:id',updateItemEstandar)
+router.delete('/Items/:id',deleteItemEstandar)
+router.get('/Items/:id',getItemEstandar)
 
 
 export default router;
