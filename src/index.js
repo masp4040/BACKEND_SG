@@ -9,6 +9,12 @@ import './models/Ciclo.js'
 import './models/Responsable.js'
 import './models/TipoEvaluacion.js'
 import './models/Clasificacion.js'
+import './models/EstandarMinimo.js'
+import './models/Evaluacion.js'
+import './models/TipoValoracion.js'
+import './models/Subestandar.js'
+import './models/ItemEstandar.js'
+import './models/EvaluacionesItems.js'
 
 
 async function main() {

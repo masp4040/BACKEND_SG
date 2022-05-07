@@ -30,7 +30,7 @@ export const getCredencial = async (req, res) => {
 
 export const createCredencial = async (req, res) => {
   
-  const { correo,password,activo,rolId} = req.body;
+  const { correo,password,activo,rol_Id} = req.body;
   
 
   try {
@@ -41,7 +41,7 @@ export const createCredencial = async (req, res) => {
       correo,
       password,
       activo,
-      rolId
+      rol_Id
       
     });
     
@@ -58,7 +58,7 @@ export const createCredencial = async (req, res) => {
 export const updateCredencial = async (req, res) => {
   try {
     const { id } = req.params;
-    const { correo, password,activo,rolId} = req.body;
+    const { correo, password,activo,rol_Id} = req.body;
     // const credencial=await Credencial.findOne({
     //   where:{id},
     //});
@@ -69,7 +69,7 @@ export const updateCredencial = async (req, res) => {
     credencial.correo = correo;
     credencial.password = password;
     credencial.activo = activo;
-    credencial.rolId = rolId;
+    credencial.rol_Id = rol_Id;
     
     
     const salt = await bcrypt.genSalt(8);

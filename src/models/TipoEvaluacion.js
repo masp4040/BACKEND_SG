@@ -1,6 +1,7 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../database/database.js";
 import { Clasificacion } from "./Clasificacion.js";
+import { ItemEstandar } from "./ItemEstandar.js";
 
 
 export const TipoEvaluacion = sequelize.define("tipo_evaluacion", {
@@ -25,6 +26,16 @@ TipoEvaluacion.hasOne(Clasificacion,{
 })                                                                  
 
 Clasificacion.belongsTo(TipoEvaluacion,{
+  foreignKey:'tipo_evaluacion_Id',
+  targetId:'id'
+})
+
+TipoEvaluacion.hasOne(ItemEstandar,{
+  foreignKey:'tipo_evaluacion_Id',
+  sourceKey:'id'
+})                                                                  
+
+ItemEstandar.belongsTo(TipoEvaluacion,{
   foreignKey:'tipo_evaluacion_Id',
   targetId:'id'
 })

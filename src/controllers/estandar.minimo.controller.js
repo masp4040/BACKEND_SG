@@ -1,58 +1,53 @@
-import { Empresa } from "../models/Empresa.js";
+import { EstandarMinimo } from "../models/EstandarMinimo.js";
 
-export const getEmpresas = async (req, res) => {
+export const getEstandares = async (req, res) => {
   try {
-    const empresas = await Empresa.findAll();
-    res.json(empresas);
+    const estandares = await EstandarMinimo.findAll();
+    res.json(estandares);
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
 };
 
-export const getEmpresa= async (req, res) => {
+export const getEstandar= async (req, res) => {
   try {
     const { id } = req.params;
-    const empresa = await Empresa.findOne({
+    const estandar = await EstandarMinimo.findOne({
       where: {
         id,
       },
       //attributes:['nombres']
     });
 
-    if (!empresa) return res.status(404).json({message:"empresa no existe"});
-    res.json(empresa);
+    if (!estandar) return res.status(404).json({message:"estandar minimo no existe"});
+    res.json(estandar);
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
 };
 
-export const createEmpresa = async (req, res) => {
-  const {credencial_Id, nit, razon_social,direccion,telefono,codigo_CIUU} = req.body;
+export const createEstandar = async (req, res) => {
+  const { nombre,ciclo_Id} = req.body;
 
   try {
-    const newEmpresa = await Empresa.create({
-      nit,
-      razon_social,
-      telefono,
-      direccion,
-      codigo_CIUU,
-      credencial_Id
-      
+    const newEstandar = await EstandarMinimo.create({
+      nombre,
+      ciclo_Id
     });
 
-    res.json(newEmpresa);
+    res.json(newEstandar);
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
 };
 
-export const updateEmpresa = async (req, res) => {
+export const updateEstandar = async (req, res) => {
   try {
     const { id } = req.params;
-    const empresa=await Empresa.findOne({
+    const estandar=await EstandarMinimo.findOne({
       where:{id},
     });
-    empresa.set(req.body);
+    estandar.set(req.body);
     // const { nombres, apellidos,cedula ,credencialId} = req.body;
 
     // const representante = await Representante.findByPk(id);
@@ -60,17 +55,17 @@ export const updateEmpresa = async (req, res) => {
     // representante.apellidos = apellidos;
     // representante.cedula = cedula;
     // representante.credencialId=credencialId;
-    await empresa.save();
+    await estandar.save();
 
-    res.json(empresa);
+    res.json(estandar);
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
 };
-export const deleteEmpresa = async (req, res) => {
+export const deleteEstandar = async (req, res) => {
   try {
     const { id } = req.params;
-    await Empresa.destroy({
+    await EstandarMinimo.destroy({
       where: {
         id,
       },

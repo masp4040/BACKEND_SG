@@ -1,5 +1,6 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../database/database.js";
+import { EstandarMinimo } from "./EstandarMinimo.js";
 
 
 
@@ -19,14 +20,14 @@ export const Ciclo = sequelize.define("ciclos", {
   timestamps: false,
 });
 
-// Rol.hasOne(Credencial,{
-//   foreignKey:'rolId',
-//   sourceKey:'id'
-// })                                                                  
+Ciclo.hasOne(EstandarMinimo,{
+  foreignKey:'ciclo_Id',
+  sourceKey:'id'
+})                                                                  
 
-// Credencial.belongsTo(Rol,{
-//   foreignKey:'rolId',
-//   targetId:'id'
-// })
+EstandarMinimo.belongsTo(Ciclo,{
+  foreignKey:'ciclo_Id',
+  targetId:'id'
+})
 
 

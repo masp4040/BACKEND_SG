@@ -1,5 +1,5 @@
 import Router from "express";
-import { createClasificacion, deleteClasificacion, getClasificacion, getClasificaciones, updateClasificacion } from "../controllers/clasificacion.controller";
+import { createClasificacion, deleteClasificacion, getClasificacion, getClasificaciones, updateClasificacion } from "../controllers/clasificacion.controller.js";
 
 
 const router = Router();

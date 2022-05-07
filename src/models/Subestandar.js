@@ -1,19 +1,19 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../database/database.js";
-import { Credencial } from "./Credencial.js";
+import { ItemEstandar } from "./ItemEstandar.js";
 
 
-export const Rol = sequelize.define("roles", {
+
+
+export const Subestandar = sequelize.define("subestandares", {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true,
   },
-  rol: {
-    type: DataTypes.STRING,
-    
-    
-    
+  nombre: {
+    type: DataTypes.INTEGER,
+   
   },
   
 },
@@ -21,13 +21,13 @@ export const Rol = sequelize.define("roles", {
   timestamps: false,
 });
 
-Rol.hasOne(Credencial,{
-  foreignKey:'rol_Id',
+Subestandar.hasOne(ItemEstandar,{
+  foreignKey:'subestandar_Id',
   sourceKey:'id'
 })                                                                  
 
-Credencial.belongsTo(Rol,{
-  foreignKey:'rol_Id',
+ItemEstandar.belongsTo(Subestandar,{
+  foreignKey:'subestandar_Id',
   targetId:'id'
 })
 

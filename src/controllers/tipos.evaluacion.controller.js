@@ -12,15 +12,15 @@ export const getTipoEvaluaciones = async (req, res) => {
 export const getTipoEvaluacion= async (req, res) => {
   try {
     const { id } = req.params;
-    const TipoEvaluacion = await TipoEvaluacion.findOne({
+    const tipoEvaluacion = await TipoEvaluacion.findOne({
       where: {
         id,
       },
       //attributes:['nombres']
     });
 
-    if (!TipoEvaluacion) return res.status(404).json({message:"tipo evaluacion no existe"});
-    res.json(TipoEvaluacion);
+    if (!tipoEvaluacion) return res.status(404).json({message:"tipo evaluacion no existe"});
+    res.json(tipoEvaluacion);
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }

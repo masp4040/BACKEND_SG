@@ -1,58 +1,53 @@
-import { Empresa } from "../models/Empresa.js";
+import { Subestandar } from "../models/Subestandar.js";
 
-export const getEmpresas = async (req, res) => {
+export const getSubestandares = async (req, res) => {
   try {
-    const empresas = await Empresa.findAll();
-    res.json(empresas);
+    const subestandares = await Subestandar.findAll();
+    res.json(subestandares);
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
 };
 
-export const getEmpresa= async (req, res) => {
+export const getSubestandar= async (req, res) => {
   try {
     const { id } = req.params;
-    const empresa = await Empresa.findOne({
+    const subestandar = await Subestandar.findOne({
       where: {
         id,
       },
       //attributes:['nombres']
     });
 
-    if (!empresa) return res.status(404).json({message:"empresa no existe"});
-    res.json(empresa);
+    if (!subestandar) return res.status(404).json({message:"subestandar no existe"});
+    res.json(subestandar);
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
 };
 
-export const createEmpresa = async (req, res) => {
-  const {credencial_Id, nit, razon_social,direccion,telefono,codigo_CIUU} = req.body;
+export const createSubestandar = async (req, res) => {
+  const { nombre,estandar_minimo_Id} = req.body;
 
   try {
-    const newEmpresa = await Empresa.create({
-      nit,
-      razon_social,
-      telefono,
-      direccion,
-      codigo_CIUU,
-      credencial_Id
-      
+    const newSubestandar = await Subestandar.create({
+      nombre,
+      estandar_minimo_Id
     });
 
-    res.json(newEmpresa);
+    res.json(newSubestandar);
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
 };
 
-export const updateEmpresa = async (req, res) => {
+export const updateSubestandar = async (req, res) => {
   try {
     const { id } = req.params;
-    const empresa=await Empresa.findOne({
+    const subestandar=await Subestandar.findOne({
       where:{id},
     });
-    empresa.set(req.body);
+    subestandar.set(req.body);
     // const { nombres, apellidos,cedula ,credencialId} = req.body;
 
     // const representante = await Representante.findByPk(id);
@@ -60,17 +55,17 @@ export const updateEmpresa = async (req, res) => {
     // representante.apellidos = apellidos;
     // representante.cedula = cedula;
     // representante.credencialId=credencialId;
-    await empresa.save();
+    await subestandar.save();
 
-    res.json(empresa);
+    res.json(subestandar);
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
 };
-export const deleteEmpresa = async (req, res) => {
+export const deleteSubestandar = async (req, res) => {
   try {
     const { id } = req.params;
-    await Empresa.destroy({
+    await Subestandar.destroy({
       where: {
         id,
       },

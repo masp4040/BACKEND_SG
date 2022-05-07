@@ -1,15 +1,16 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../database/database.js";
-import { Credencial } from "./Credencial.js";
+import { Subestandar } from "./Subestandar.js";
 
 
-export const Rol = sequelize.define("roles", {
+
+export const EstandarMinimo = sequelize.define("estandares_minimos", {
   id: {
     type: DataTypes.INTEGER,
     primaryKey: true,
     autoIncrement: true,
   },
-  rol: {
+  nombre: {
     type: DataTypes.STRING,
     
     
@@ -21,13 +22,13 @@ export const Rol = sequelize.define("roles", {
   timestamps: false,
 });
 
-Rol.hasOne(Credencial,{
-  foreignKey:'rol_Id',
+EstandarMinimo.hasOne(Subestandar,{
+  foreignKey:'estandar_minimo_Id',
   sourceKey:'id'
 })                                                                  
 
-Credencial.belongsTo(Rol,{
-  foreignKey:'rol_Id',
+Subestandar.belongsTo(EstandarMinimo,{
+  foreignKey:'estandar_minimo_Id',
   targetId:'id'
 })
 

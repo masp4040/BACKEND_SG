@@ -1,58 +1,55 @@
-import { Empresa } from "../models/Empresa.js";
+import { EvaluacionesItems } from "../models/EvaluacionesItems.js";
 
-export const getEmpresas = async (req, res) => {
+export const getEvaluacionesItems = async (req, res) => {
   try {
-    const empresas = await Empresa.findAll();
-    res.json(empresas);
+    const evaluacionesItems= await EvaluacionesItems.findAll();
+    res.json(evaluacionesItems);
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
 };
 
-export const getEmpresa= async (req, res) => {
+export const getEvaluacionesItem= async (req, res) => {
   try {
     const { id } = req.params;
-    const empresa = await Empresa.findOne({
+    const evaluacionItem = await EvaluacionesItems.findOne({
       where: {
         id,
       },
       //attributes:['nombres']
     });
 
-    if (!empresa) return res.status(404).json({message:"empresa no existe"});
-    res.json(empresa);
+    if (!evaluacionItem) return res.status(404).json({message:"evaluacionItem no existe"});
+    res.json(evaluacionItem);
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
 };
 
-export const createEmpresa = async (req, res) => {
-  const {credencial_Id, nit, razon_social,direccion,telefono,codigo_CIUU} = req.body;
+export const createEvaluacionesItems = async (req, res) => {
+  const {evaluacion_item_Id,item_Id,cumple} = req.body;
 
   try {
-    const newEmpresa = await Empresa.create({
-      nit,
-      razon_social,
-      telefono,
-      direccion,
-      codigo_CIUU,
-      credencial_Id
+    const newEvaluacionesItems = await EvaluacionesItems.create({
+        evaluacion_item_Id,
+        item_Id,
+        cumple
       
     });
 
-    res.json(newEmpresa);
+    res.json(newEvaluacionesItems);
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
 };
 
-export const updateEmpresa = async (req, res) => {
+export const updateEvaluacionesItems = async (req, res) => {
   try {
     const { id } = req.params;
-    const empresa=await Empresa.findOne({
+    const evaluacionItem=await EvaluacionesItems.findOne({
       where:{id},
     });
-    empresa.set(req.body);
+    evaluacionItem.set(req.body);
     // const { nombres, apellidos,cedula ,credencialId} = req.body;
 
     // const representante = await Representante.findByPk(id);
@@ -60,17 +57,17 @@ export const updateEmpresa = async (req, res) => {
     // representante.apellidos = apellidos;
     // representante.cedula = cedula;
     // representante.credencialId=credencialId;
-    await empresa.save();
+    await evaluacionItem.save();
 
-    res.json(empresa);
+    res.json(evaluacionItem);
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
 };
-export const deleteEmpresa = async (req, res) => {
+export const deleteEvaluacionesItems = async (req, res) => {
   try {
     const { id } = req.params;
-    await Empresa.destroy({
+    await EvaluacionesItems.destroy({
       where: {
         id,
       },

@@ -34,31 +34,31 @@ export const Empresa = sequelize.define("empresas", {
 });
 
 Empresa.hasOne(Representante, {
-  foreignKey: "empresaId",
+  foreignKey: "empresa_Id",
   sourceKey: "id",
 });
 
 Representante.belongsTo(Empresa, {
-  foreignKey: "empresaId",
+  foreignKey: "empresa_Id",
   targetId: "id",
 });
 
 Empresa.hasOne(Responsable, {
-  foreignKey: "empresaId",
+  foreignKey: "empresa_Id",
   sourceKey: "id",
 });
 
 Responsable.belongsTo(Empresa, {
-  foreignKey: "empresaId",
+  foreignKey: "empresa_Id",
   targetId: "id",
 });
 
 Empresa.hasOne(Clasificacion, {
-  foreignKey: "empresaId",
+  foreignKey: "empresa_Id",
   sourceKey: "id",
 });
 
 Clasificacion.belongsTo(Empresa, {
-  foreignKey: "empresaId",
+  foreignKey: "empresa_Id",
   targetId: "id",
 });

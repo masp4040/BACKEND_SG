@@ -23,22 +23,22 @@ export const TipoResponsable = sequelize.define("tipos_responsable", {
 });
 
 TipoResponsable.hasOne(Responsable, {
-  foreignKey: "tipo_responsableId",
+  foreignKey: "tipo_responsable_Id",
   sourceKey: "id",
 });
 
 Responsable.belongsTo(TipoResponsable, {
-  foreignKey: "tipo_responsableId",
+  foreignKey: "tipo_responsable_Id",
   targetId: "id",
 });
 
 TipoResponsable.hasOne(Clasificacion, {
-  foreignKey: "tipo_responsableId",
+  foreignKey: "tipo_responsable_Id",
   sourceKey: "id",
 });
 
 Clasificacion.belongsTo(TipoResponsable, {
-  foreignKey: "tipo_responsableId",
+  foreignKey: "tipo_responsable_Id",
   targetId: "id",
 });
 
