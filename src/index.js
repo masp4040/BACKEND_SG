@@ -22,7 +22,9 @@ async function main() {
     await sequelize.sync({force:false});
     console.log("Connection has been established successfully.");
   
-    
+    app.get('/',(req,res)=>{
+      res.send('BIENVENIDOS A MI SERVIDOR')
+  })
     app.listen(3000);
     console.log("Server is listening on port", 3000);
   } catch (error) {
