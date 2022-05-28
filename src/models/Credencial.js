@@ -15,14 +15,20 @@ export const Credencial = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,
+      validate:{
+        isEmail:{
+          msg:'El email debe ser un correo valido'
+        }
+      }
     },
     password: {
       type: DataTypes.STRING,
       allowNull: false,
-      unique: true,
+      
+      
     },
     activo: {
-      type: DataTypes.BOOLEAN,
+      type: DataTypes.TINYINT,
       allowNull: false,
     },
   },

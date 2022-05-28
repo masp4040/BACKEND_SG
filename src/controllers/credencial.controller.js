@@ -1,6 +1,7 @@
 import { Credencial } from "../models/Credencial.js";
 import { Representante } from "../models/Representante.js";
 import bcrypt from 'bcrypt'
+import jwt from 'jsonwebtoken'
 
 export const getCredenciales = async (req, res) => {
   try {
@@ -19,10 +20,11 @@ export const getCredencial = async (req, res) => {
         id,
       },
       //atributtes:['nombres']
-    });
+    })
 
     if (!credencial) return res.status(404).json({message:"credencial no existe"});
-    res.json(credencial);
+        res.json(credencial[0]);
+        
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
@@ -34,7 +36,7 @@ export const createCredencial = async (req, res) => {
   
 
   try {
-    
+
     
 
     const newCredencial = await Credencial.create({
@@ -43,15 +45,27 @@ export const createCredencial = async (req, res) => {
       activo,
       rol_Id
       
-    });
-    
+    })
+
     const salt = await bcrypt.genSalt(8);
     newCredencial.password = await bcrypt.hash(password, salt);
-    await newCredencial.save();
+    await newCredencial.save()
 
-    res.json(newCredencial);
+    
+    .then(newCredencial=>{
+      let token=jwt.sign({newCredencial:newCredencial},'secret',{
+        expiresIn:'60'
+      });
+      res.json({
+        newCredencial:newCredencial,
+        token:token
+      })
+    })
+
+    res.json(newCredencial)
+    
   } catch (error) {
-    return res.status(500).json({ message: "el usuario ya existe" });
+    return res.status(500).json(error );
   }
 };
 

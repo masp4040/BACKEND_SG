@@ -1,4 +1,5 @@
 import express from "express";
+import cors from "cors";
 
 
 import credencialRoutes from "./routes/credencial.routes.js";
@@ -22,7 +23,7 @@ import evaluacion_item from './routes/evaluacion.item.routes.js'
 const app = express();
 
 //middlewares
-
+app.use(cors())
 app.use(express.json());
 
 
