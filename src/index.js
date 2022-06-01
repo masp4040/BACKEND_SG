@@ -1,7 +1,7 @@
 import app from "./app.js";
 import {sequelize}  from "./database/database.js";
 import './models/Rol.js'
-import './models/Credencial.js'
+//import './models/Usuario.js'
 import './models/Empresa.js'
 import './models/Representante.js'
 import './models/TipoResponsable.js'
@@ -15,18 +15,20 @@ import './models/TipoValoracion.js'
 import './models/Subestandar.js'
 import './models/ItemEstandar.js'
 import './models/EvaluacionesItems.js'
-
+import './models/Usuario.js'
 
 async function main() {
   try {
     await sequelize.sync({force:false});
-    console.log("Connection has been established successfully.");
+    console.log("Connection has been established successfully");
+
+    const PORT= process.env.PORT || 4000
   
     app.get('/',(req,res)=>{
       res.send('BIENVENIDOS A MI SERVIDOR')
   })
-    app.listen(4000);
-    console.log("Server is listening on port", 4000);
+    app.listen(PORT);
+    console.log(`Server is listening on port , ${PORT}`);
   } catch (error) {
     console.error('Unable to connect to the database:', error);
   }

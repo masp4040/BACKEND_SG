@@ -1,36 +1,43 @@
-import { Credencial } from "../models/Credencial.js";
+//import { Usuario } from "../models/Usuario.js";
+import {Usuario} from "../models/Usuario.js"
 import { Representante } from "../models/Representante.js";
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 
-export const getCredenciales = async (req, res) => {
+
+//listar todos los usuarios
+export const getUsuarios = async (req, res) => {
   try {
-    const credenciales = await Credencial.findAll();
-    res.json(credenciales);
+    const usuarios = await Usuario.findAll();
+    res.json(usuarios);
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
 };
 
-export const getCredencial = async (req, res) => {
+//buscar un usuario por correo
+export const getUsuario = async (req, res) => {
   try {
-    const { id } = req.params;
-    const credencial = await Credencial.findOne({
+    const { correo } = req.params;
+    const usuario = await Usuario.findOne({
       where: {
-        id,
+        correo,
       },
+
       //atributtes:['nombres']
     })
 
-    if (!credencial) return res.status(404).json({message:"credencial no existe"});
-        res.json(credencial[0]);
+    if (!usuario) return res.status(404).json({message:"Usuario no existe"});
+        res.json(usuario);
         
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
 };
 
-export const createCredencial = async (req, res) => {
+
+//crear un usuario
+export const createUsuario = async (req, res) => {
   
   const { correo,password,activo,rol_Id} = req.body;
   
@@ -39,37 +46,38 @@ export const createCredencial = async (req, res) => {
 
     
 
-    const newCredencial = await Credencial.create({
+    const newUsuario = await Usuario.create({
       correo,
       password,
       activo,
-      rol_Id
+      rol_Id,
       
     })
-
+    
     const salt = await bcrypt.genSalt(8);
-    newCredencial.password = await bcrypt.hash(password, salt);
-    await newCredencial.save()
+    newUsuario.password = await bcrypt.hash(password, salt);
+    await newUsuario.save()
 
     
-    .then(newCredencial=>{
-      let token=jwt.sign({newCredencial:newCredencial},'secret',{
+    .then(newUsuario=>{
+      let token=jwt.sign({newUsuario:newUsuario},'secret',{
         expiresIn:'60'
       });
       res.json({
-        newCredencial:newCredencial,
+        newUsuario:newUsuario,
         token:token
       })
     })
 
-    res.json(newCredencial)
+    res.json(newUsuario)
     
   } catch (error) {
     return res.status(500).json(error );
   }
 };
 
-export const updateCredencial = async (req, res) => {
+//actualizar usuario
+export const updateUsuario = async (req, res) => {
   try {
     const { id } = req.params;
     const { correo, password,activo,rol_Id} = req.body;
@@ -79,26 +87,28 @@ export const updateCredencial = async (req, res) => {
     //credencial.set(req.body);
     //const { correo, password} = req.body;
 
-    const credencial = await Credencial.findByPk(id);
-    credencial.correo = correo;
-    credencial.password = password;
-    credencial.activo = activo;
-    credencial.rol_Id = rol_Id;
+    const usuario = await Usuario.findByPk(id);
+    usuario.correo = correo;
+    usuario.password = password;
+    usuario.activo = activo;
+    usuario.rol_Id = rol_Id;
     
     
     const salt = await bcrypt.genSalt(8);
-    credencial.password = await bcrypt.hash(password, salt);
-    await credencial.save();
+    usuario.password = await bcrypt.hash(password, salt);
+    await usuario.save();
 
-    res.json(credencial);
+    res.json(usuario);
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
 };
-export const deleteCredencial = async (req, res) => {
+
+//eliminar usuario
+export const deleteUsuario = async (req, res) => {
   try {
     const { id } = req.params;
-    await Credencial.destroy({
+    await Usuario.destroy({
       where: {
         id,
       },
@@ -109,11 +119,11 @@ export const deleteCredencial = async (req, res) => {
   }
 };
 
-export const getCredencialRepresentante=async(req,res)=>{
+export const getUsuarioRepresentante=async(req,res)=>{
  try {
   const {id}=req.params
   const representante=await Representante.findAll({
-    where:{credencialId:id}
+    where:{usuarioId:id}
   })
   res.json(representante)
  } catch (error) {

@@ -3,8 +3,8 @@ import { sequelize } from "../database/database.js";
 
 
 
-export const Credencial = sequelize.define(
-  "credenciales",
+export const Usuario = sequelize.define(
+  "usuarios",
   {
     id: {
       type: DataTypes.INTEGER,
@@ -28,7 +28,8 @@ export const Credencial = sequelize.define(
       
     },
     activo: {
-      type: DataTypes.TINYINT,
+      type: DataTypes.BOOLEAN,
+      defaultValue:true,
       allowNull: false,
     },
   },

@@ -8,8 +8,18 @@ export const Responsable = sequelize.define("responsables", {
     autoIncrement: true,
   },
   nombres: {
-    type: DataTypes.STRING
-  },
+    type: DataTypes.STRING,
+    validate:{
+      isAlpha:{
+        msg:'los nombres solo pueden contener letras'
+        },
+        len:{
+          args:[4,255],
+          msg:'los nombre debe contener minimo 4 caracteres'
+        }
+      }
+    },
+  
   apellidos: {
     type: DataTypes.STRING
   },

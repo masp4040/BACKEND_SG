@@ -2,7 +2,7 @@ import express from "express";
 import cors from "cors";
 
 
-import credencialRoutes from "./routes/credencial.routes.js";
+import usuarioRoutes from "./routes/usuario.routes.js";
 import representanteRoutes from "./routes/representante.routes.js";
 import empresaRoutes from "./routes/empresa.routes.js";
 import rolRoutes from "./routes/rol.routes.js";
@@ -18,7 +18,7 @@ import valoracion from './routes/tipo.valoracion.routes.js'
 import subestandar from './routes/subestandar.routes.js'
 import itemEstandar from './routes/item.estandar.routes.js'
 import evaluacion_item from './routes/evaluacion.item.routes.js'
-
+// import {credencialRoutes,rolRoutes,empresaRoutes,rolRoutes,tipoRoutes,cicloRoutes,responsableRoutes,tipoRes,tipoEva,estandar,clasificacion,evaluacion,valoracion,subestandar,itemEstandar,evaluacion_item} from './routes.js'
 
 const app = express();
 
@@ -28,7 +28,7 @@ app.use(express.json());
 
 
 
-app.use(credencialRoutes);
+app.use(usuarioRoutes);
 app.use(representanteRoutes);
 app.use(empresaRoutes);
 app.use(rolRoutes);

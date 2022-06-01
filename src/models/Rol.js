@@ -1,6 +1,6 @@
 import { DataTypes } from "sequelize";
 import { sequelize } from "../database/database.js";
-import { Credencial } from "./Credencial.js";
+import { Usuario } from "./Usuario.js";
 
 
 export const Rol = sequelize.define("roles", {
@@ -14,6 +14,8 @@ export const Rol = sequelize.define("roles", {
     
     
     
+    
+    
   },
   
 },
@@ -21,12 +23,12 @@ export const Rol = sequelize.define("roles", {
   timestamps: false,
 });
 
-Rol.hasOne(Credencial,{
+Rol.hasOne(Usuario,{
   foreignKey:'rol_Id',
   sourceKey:'id'
 })                                                                  
 
-Credencial.belongsTo(Rol,{
+Usuario.belongsTo(Rol,{
   foreignKey:'rol_Id',
   targetId:'id'
 })
