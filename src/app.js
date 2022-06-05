@@ -18,7 +18,6 @@ import valoracion from './routes/tipo.valoracion.routes.js'
 import subestandar from './routes/subestandar.routes.js'
 import itemEstandar from './routes/item.estandar.routes.js'
 import evaluacion_item from './routes/evaluacion.item.routes.js'
-// import {credencialRoutes,rolRoutes,empresaRoutes,rolRoutes,tipoRoutes,cicloRoutes,responsableRoutes,tipoRes,tipoEva,estandar,clasificacion,evaluacion,valoracion,subestandar,itemEstandar,evaluacion_item} from './routes.js'
 
 const app = express();
 

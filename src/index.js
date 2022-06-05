@@ -1,7 +1,6 @@
 import app from "./app.js";
 import {sequelize}  from "./database/database.js";
 import './models/Rol.js'
-//import './models/Usuario.js'
 import './models/Empresa.js'
 import './models/Representante.js'
 import './models/TipoResponsable.js'
