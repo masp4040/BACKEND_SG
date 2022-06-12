@@ -4,6 +4,7 @@ import { Representante } from "../models/Representante.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 
+
 import { expires, secret } from "../database/auth.js";
 
 //listar todos los usuarios
@@ -32,10 +33,18 @@ export const signIn = async (req, res) => {
     });
 
     if (!usuario) {
+      res.render('/',{error:'Error: Usuario con este correo no existe'})
+      // return res
+      //   .status(404)
+      //   .json({ message: "Usuario con este correo no existe" });
+    }
+    
+    if(!usuario.activo){
       return res
-        .status(404)
-        .json({ message: "Usuario con este correo no existe" });
-    } else {
+        .status(403)
+        .json({ message: "Cuenta inactiva comuniquese con el administrador" });
+    }
+     else {
       if (bcrypt.compareSync(password, usuario.password)) {
         //devolvemos el token
 
@@ -68,6 +77,9 @@ export const createUsuario = async (req, res) => {
       activo,
       rol_Id,
     });
+
+    
+    
 
     const salt = await bcrypt.genSalt(8);
     newUsuario.password = await bcrypt.hash(password, salt);

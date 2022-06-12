@@ -27,6 +27,8 @@ app.use(express.json());
 
 
 
+
+
 app.use(usuarioRoutes);
 app.use(representanteRoutes);
 app.use(empresaRoutes);
