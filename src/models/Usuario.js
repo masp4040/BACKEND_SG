@@ -18,13 +18,20 @@ export const Usuario = sequelize.define(
       validate:{
         isEmail:{
           msg:'El email debe ser un correo valido'
+        },
+        notEmpty:{
+          msg:'Ingrese un email'
         }
       }
     },
     password: {
       type: DataTypes.STRING,
       allowNull: false,
-      
+      validate:{
+        notEmpty:{
+          msg:'Ingrese un password'
+        }
+      }
       
     },
     activo: {
@@ -32,6 +39,11 @@ export const Usuario = sequelize.define(
       defaultValue:true,
       allowNull: false,
     },
+    rol_Id:{
+      type:DataTypes.STRING,
+      defaultValue:3,
+      allowNull:false
+    }
   },
   {
     timestamps: true,

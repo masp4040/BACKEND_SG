@@ -33,10 +33,10 @@ export const signIn = async (req, res) => {
     });
 
     if (!usuario) {
-      res.render('/',{error:'Error: Usuario con este correo no existe'})
-      // return res
-      //   .status(404)
-      //   .json({ message: "Usuario con este correo no existe" });
+      
+      return res
+        .status(404)
+        .json({ message: "Usuario con este correo no existe" });
     }
     
     if(!usuario.activo){
@@ -68,14 +68,14 @@ export const signIn = async (req, res) => {
 //SIGNUP
 //crear un usuario
 export const createUsuario = async (req, res) => {
-  const { correo, password, activo, rol_Id } = req.body;
+  const { correo, password, activo,rol_Id } = req.body;
 
   try {
     const newUsuario = await Usuario.create({
       correo,
       password,
       activo,
-      rol_Id,
+      rol_Id
     });
 
     
@@ -83,8 +83,7 @@ export const createUsuario = async (req, res) => {
 
     const salt = await bcrypt.genSalt(8);
     newUsuario.password = await bcrypt.hash(password, salt);
-    await newUsuario
-      .save()
+    await newUsuario.save()
 
       .then((newUsuario) => {
         let token = jwt.sign({ newUsuario: newUsuario }, secret, {
